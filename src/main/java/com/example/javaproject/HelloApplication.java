@@ -16,9 +16,9 @@ import java.sql.Statement;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 920, 550);
-        stage.getIcons().add(new Image("C:\\JavaProject\\src\\main\\resources\\images\\travel.png"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("vols.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 650);
+        //stage.getIcons().add(new Image("C:\\JavaProject\\src\\main\\resources\\images\\travel.png"));
         stage.setTitle("Travel!");
         stage.setScene(scene);
         stage.show();
