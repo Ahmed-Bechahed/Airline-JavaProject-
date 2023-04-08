@@ -4,8 +4,14 @@ public class Passenger {
     public int ID_passenger;
     public String nom;
     public String prenom;
-    public String num_passeport;
-    public String ID_vol;
+    public int num_passeport;
+
+    public Passenger(int ID_passenger, String nom, String prenom, int num_passeport) {
+        this.ID_passenger = ID_passenger;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.num_passeport = num_passeport;
+    }
 
     public int getID_passenger() {
         return ID_passenger;
@@ -19,13 +25,11 @@ public class Passenger {
         return prenom;
     }
 
-    public String getNum_passeport() {
+    public int getNum_passeport() {
         return num_passeport;
     }
 
-    public String getID_vol() {
-        return ID_vol;
-    }
+
 
     public void setID_passenger(int ID_passenger) {
         this.ID_passenger = ID_passenger;
@@ -39,11 +43,9 @@ public class Passenger {
         this.prenom = prenom;
     }
 
-    public void setNum_passeport(String num_passeport) {
+    public void setNum_passeport(int num_passeport) {
         this.num_passeport = num_passeport;
     }
 
-    public void setID_vol(String ID_vol) {
-        this.ID_vol = ID_vol;
-    }
+
 }

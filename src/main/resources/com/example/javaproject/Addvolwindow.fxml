@@ -22,6 +22,6 @@
       <Label layoutX="49.0" layoutY="378.0" prefHeight="28.0" prefWidth="81.0" text="ID_pilote" />
       <TextField fx:id="idpil" layoutX="144.0" layoutY="378.0" prefHeight="26.0" prefWidth="102.0" />
       <Button fx:id="validebtn" layoutX="306.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#ajout_vol" prefHeight="28.0" prefWidth="122.0" text="Valider" />
-      <Button fx:id="annulerbtn" layoutX="36.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#ajout_vol" prefHeight="28.0" prefWidth="122.0" text="annuler" />
+      <Button fx:id="annulerbtn" layoutX="36.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#undooo" prefHeight="28.0" prefWidth="122.0" text="annuler" />
    </children>
 </AnchorPane>

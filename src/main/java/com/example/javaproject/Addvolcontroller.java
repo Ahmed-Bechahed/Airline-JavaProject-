@@ -22,6 +22,8 @@ public class Addvolcontroller {
     @FXML
     private Button validebtn;
     @FXML
+    private Button annulerbtn;
+    @FXML
     private TextField idvol_txtfld;
     @FXML
     private TextField dep_txtfld;
@@ -40,8 +42,10 @@ public class Addvolcontroller {
     public void setVolsController(VolsController volsController) {
         this.volsController = volsController;
     }
-
-
+    public void undooo(MouseEvent event){
+        Stage stage = (Stage) annulerbtn.getScene().getWindow();
+        stage.close();
+    }
     @FXML
     public void ajout_vol(MouseEvent event) {
         // Récupération des données saisies dans les champs
