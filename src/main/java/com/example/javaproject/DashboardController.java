@@ -1,11 +1,16 @@
 package com.example.javaproject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Callback;
@@ -17,7 +22,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 
-public class HomeController  implements Initializable{
+public class DashboardController implements Initializable{
     public static int idVol;
     @FXML
     private ImageView avatar;
@@ -106,6 +111,10 @@ public class HomeController  implements Initializable{
     @FXML
     private Label nameplace3;
 
+
+    @FXML
+    private Pane places_container;
+
     public void initialize (URL Location, ResourceBundle resources) {
         dashboard_welcome.setText("Welcome  " + AdminDAO.user_name_login);
         dashboard_user_name.setText(AdminDAO.user_fullname_login);
@@ -128,7 +137,6 @@ public class HomeController  implements Initializable{
         price.setText("$"+String.format("%.0f",HomeDAO.get_revenue(HomeDAO.week)));
         destinations_number.setText(String.valueOf(HomeDAO.get_destinations_number(HomeDAO.week)));
         combo_box.setOnAction(e -> {
-
             if (combo_box.getValue() == "This Week") {
                 vols_number.setText(String.valueOf(HomeDAO.get_vols_number(HomeDAO.week)));
                 passengers_number.setText(String.valueOf(HomeDAO.get_passengers_number(HomeDAO.week)));
@@ -141,6 +149,34 @@ public class HomeController  implements Initializable{
                 destinations_number.setText(String.valueOf(HomeDAO.get_destinations_number(HomeDAO.month)));
             }
         });
+
+        //most visited places :
+        ArrayList<String> places_list = HomeDAO.get_top_places();
+
+
+        HBox hbox = new HBox();
+        for (String place : places_list) {
+            String path="C:\\JavaProject\\src\\main\\resources\\images\\"+place+".jpg";
+            System.out.println("this is "+place);
+            VBox vbox =new VBox();
+            Label place_name=new Label(place);
+            ImageView image=new ImageView(new Image(path));
+            image.setStyle("-fx-border-radius: 20px;");
+            image.setFitWidth(120);
+            image.setFitHeight(90);
+            vbox.getChildren().addAll(image,place_name);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setSpacing(10);
+            hbox.getChildren().add(vbox);
+        }
+        hbox.setSpacing(30);
+        hbox.setAlignment(Pos.CENTER);
+        places_container.getChildren().add(hbox);
+
+
+
+
+
 
         // vols_number.setText(String.valueOf(new VolDAO().get_vols_number(Integer.parseInt(AdminDAO.user_login))));
         ID_vol.setCellValueFactory(new PropertyValueFactory<>("ID_vol"));
@@ -171,7 +207,7 @@ public class HomeController  implements Initializable{
                             // Handle the click event here
                             idVol = getTableView().getItems().get(getIndex()).getID_vol();
                             System.out.println("linked page to vol "+ idVol);
-                            LoadScene.load(dashboard_table, "signup.fxml","sign up",event);
+                            LoadScene.load_pane(container, "signup.fxml");
                             System.out.println("Details link clicked for row " + getIndex());
                         });
                     }
@@ -200,6 +236,16 @@ public class HomeController  implements Initializable{
         webEngine.load(MAPS_URL);
 
     }
+
+
+        public void load(MouseEvent event1)  {
+                    LoadScene.load_pane(container,"signup.fxml");
+        }
+
+
+        public void load_dashboard(MouseEvent event){
+        LoadScene.load_pane(container,"home.fxml");
+        }
 
 
 

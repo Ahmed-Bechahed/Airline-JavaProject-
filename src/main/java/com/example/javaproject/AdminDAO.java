@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 import java.sql.*;
 
 public class AdminDAO {
-     Connection connection;
+     static Connection connection;
     Statement statement =null;
     static String user_name_login;
     static String user_fullname_login;

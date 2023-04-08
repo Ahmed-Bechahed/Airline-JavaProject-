@@ -36,6 +36,8 @@ public class Myconnection {
     public static void disconnect(Connection connection){
         try {
             connection.close();
+            System.out.println("disconnected");
+
         } catch (SQLException e) {
             System.err.println("Error closing connection: " + e.getMessage());
         }
