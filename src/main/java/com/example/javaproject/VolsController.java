@@ -1,46 +1,34 @@
 package com.example.javaproject;
 
 
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 //import javafx.scene.control.DateTimePicker;
 public class VolsController implements Initializable  {
 
 
     @FXML
-    private TextField villedepvol_textfield;
-    // private TextField searchField;
-    @FXML
-    private TextField villearvol_textfield;
-    @FXML
-    private TextField datedepvol_textfield;
-
-    @FXML
-    private TextField datearvol_textfield;
+    private ComboBox<String> villedepvol_textfield,villearvol_textfield;
 
     @FXML
     private Button recherche_button;
@@ -73,13 +61,22 @@ public class VolsController implements Initializable  {
     private TableColumn<Vol, String> jArrColumn;
 
     @FXML
+    private TableColumn<Vol, Void> actionColumn;
+
+    @FXML
     private TableColumn<Vol, Integer> idAdminColumn;
     private ObservableList<Vol> volList = FXCollections.observableArrayList();
 
-
+    String pattern = "yyyy-MM-dd";
     private VolDAO volDAO;
 
     public void initialize(URL location, ResourceBundle resources) {
+        //DatePicker datePicker = localDateTimePicker();
+        //datedepvol_textfield.setValue(datePicker.getValue());
+        villedepvol_textfield.getItems().addAll("Tokyo ", "Cairo","London","Paris");
+        villedepvol_textfield.setValue("Paris");
+        villearvol_textfield.getItems().addAll("Tokyo ", "Cairo","London","Paris");
+        villearvol_textfield.setValue("Paris");
         volDAO = new VolDAO();
         idVolColumn.setCellValueFactory(new PropertyValueFactory<>("ID_vol"));
         departColumn.setCellValueFactory(new PropertyValueFactory<>("depart"));
@@ -88,22 +85,51 @@ public class VolsController implements Initializable  {
         idPiloteColumn.setCellValueFactory(new PropertyValueFactory<>("ID_pilote"));
         jDepColumn.setCellValueFactory(new PropertyValueFactory<>("jdep"));
         jArrColumn.setCellValueFactory(new PropertyValueFactory<>("jarr"));
-        TableColumn<Vol, Void> editCol = new TableColumn<>("Modifier");
-        TableColumn<Vol, Void> deleteCol = new TableColumn<>("Supprimer");
-        /*editCol.setCellFactory(param -> new TableCell<Vol, Void>() {
-            private final Button editButton = new Button("Modifier");
-
-            {
-                editButton.setOnAction(event -> {
-                    Vol vol = getTableView().getItems().get(getIndex());
-                    // Code pour ouvrir la fenêtre de modification du vol
-                });
+        actionColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Vol, Void>, ObservableValue<Void>>() {
+            @Override
+            public ObservableValue<Void> call(TableColumn.CellDataFeatures<Vol, Void> features) {
+                return new SimpleObjectProperty<>(null);
             }
-            */
+        });
+        actionColumn.setCellFactory(column -> {
+            return new TableCell<Vol, Void>() {
+                private final Button editButton = new Button("Modifier");
+                private final Button deleteButton = new Button("Supprimer");
+
+                {
+                    editButton.setOnAction(event -> {
+                        Vol vol = getTableView().getItems().get(getIndex());
+                        try {
+                            modifierVol(vol);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        volsTable.refresh();
+                    });
+                    deleteButton.setOnAction(event -> {
+                        Vol vol = getTableView().getItems().get(getIndex());
+                        volDAO.delete(vol);
+                        volsTable.getItems().remove(vol);
+                    });
+
+                }
+                @Override
+                protected void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (!empty) {
+                        HBox hbox = new HBox(editButton, deleteButton);
+                        hbox.setSpacing(5);
+                        setGraphic(hbox);
+                    } else {
+                        setGraphic(null);
+                    }
+                }
+            };
+        });
 
 
         try {
-            //volDAO.init();
+
             volsTable.setItems(new VolDAO().all());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -118,20 +144,68 @@ public class VolsController implements Initializable  {
         LoadScene.load(backbtn,"home.fxml","login",event);
     }
 
+    @FXML
+    public void modifierVol(Vol vol) throws IOException {
+        if (vol != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("modifier.fxml"));
+            Parent root = loader.load();
+            ModifierController modifierController = loader.getController();
+            modifierController.setVol(vol);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
+    }
+
 
     @FXML
-    public void search() {
-        String depart = villedepvol_textfield.getText();
-        String arrivee = villearvol_textfield.getText();
-        String dateDepart = datedepvol_textfield.getText();
-        String dateArrivee = datearvol_textfield.getText();
-        ObservableList<Vol> volsFiltres = volList
-                .filtered(v -> v.getDepart().equals(depart))
-                .filtered(v -> v.getArrive().equals(arrivee))
-                .filtered(v -> v.getJdep().equals(dateDepart))
-                .filtered(v -> v.getJarr().equals(dateArrivee));
-        volsTable.setItems(volsFiltres);
+    public void search() throws SQLException {
+        String depart = villedepvol_textfield.getValue();
+        String arrivee = villearvol_textfield.getValue();
+        ObservableList<Vol> flights = searchFlights(depart, arrivee);
+        volsTable.getItems().setAll(flights);
     }
+
+    public ObservableList<Vol> searchFlights(String depart, String arrivee) throws SQLException {
+        Connection connection=Myconnection.connect();
+        String query = "SELECT * FROM `vol` WHERE depart = ? AND arrive = ?";
+        ObservableList<Vol> flights = FXCollections.observableArrayList();
+        PreparedStatement stmt = null;
+        stmt = connection.prepareStatement(query);
+        stmt.setString(1, depart);
+        stmt.setString(2, arrivee);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Vol flight = new Vol( rs.getInt("ID_vol"),rs.getString("depart"), rs.getString("arrive"),
+                    rs.getInt("ID_avion"), rs.getInt("ID_pilote"), rs.getString("jdep"),
+                    rs.getString("jarr")
+            );
+            flights.add(flight);
+        }
+        return flights;
+    }
+
+    /*  public static DatePicker localDateTimePicker() {
+          DatePicker datePicker = new DatePicker();
+
+          // Define a DateTimeFormatter that matches the desired format
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+          // Define a StringConverter that converts between LocalDate and String using the formatter
+          StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, null);
+
+          // Set the converter on the DatePicker control
+          datePicker.setConverter(converter);
+
+          // Set the prompt text to match the desired format
+          datePicker.setPromptText(formatter.format(LocalDateTime.now()));
+
+          return datePicker;
+      }*/
     @FXML
     public void addv(MouseEvent event) {
         System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh");

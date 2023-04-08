@@ -159,6 +159,8 @@ public class Detailscontroller implements Initializable {
         }
 
     }
+
+
     @FXML
     public void addp(MouseEvent event) {
 

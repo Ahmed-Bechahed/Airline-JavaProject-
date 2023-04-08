@@ -54,6 +54,10 @@ public class Addpassengercontroller {
             statement.setString(3, prname);
             statement.setInt(4, Integer.parseInt(numdepass));
             statement.executeUpdate();
+            Detailscontroller dt=new Detailscontroller();
+            Stage stage = (Stage) validebt.getScene().getWindow();
+            stage.close();
+            //dt.here();
             LoadScene.load(this.validebt, "details.fxml","DETAILS",event);
         }
         }

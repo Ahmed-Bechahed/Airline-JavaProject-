@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -47,27 +47,21 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="volcontainer" layoutX="85.0" layoutY="-15.0" prefHeight="662.0" prefWidth="856.0">
+            <AnchorPane fx:id="volcontainer" layoutX="73.0" layoutY="-11.0" prefHeight="662.0" prefWidth="865.0">
                <children>
                   <Label layoutX="296.0" layoutY="14.0" prefHeight="43.0" prefWidth="146.0" text="Trouvez votre vol !!" />
-                  <Label layoutX="14.0" layoutY="105.0" prefHeight="43.0" prefWidth="92.0" text="Ville de départ :" />
-                  <Label layoutX="200.0" layoutY="105.0" prefHeight="43.0" prefWidth="114.0" text="Ville de d 'arrivé :" />
-                  <Label layoutX="408.0" layoutY="105.0" prefHeight="43.0" prefWidth="98.0" text="Date de départ :" />
-                  <Label layoutX="620.0" layoutY="105.0" prefHeight="43.0" prefWidth="92.0" text="Date d'arrivé :" />
-                  <TextField fx:id="villedepvol_textfield" layoutX="99.0" layoutY="114.0" prefHeight="26.0" prefWidth="92.0" />
-                  <TextField fx:id="villearvol_textfield" layoutX="296.0" layoutY="113.0" prefHeight="26.0" prefWidth="92.0" />
-                  <TextField fx:id="datedepvol_textfield" layoutX="497.0" layoutY="113.0" prefHeight="26.0" prefWidth="92.0" />
-                  <TextField fx:id="datearvol_textfield" layoutX="705.0" layoutY="113.0" prefHeight="26.0" prefWidth="92.0" />
+                  <Label layoutX="64.0" layoutY="104.0" prefHeight="43.0" prefWidth="92.0" text="Ville de départ :" />
+                  <Label layoutX="410.0" layoutY="105.0" prefHeight="43.0" prefWidth="114.0" text="Ville de d 'arrivé :" />
                   <TableView fx:id="volsTable" layoutX="1.0" layoutY="281.0" prefHeight="366.0" prefWidth="856.0">
                      <columns>
-                        <TableColumn fx:id="idVolColumn" prefWidth="103.19998168945312" text="ID_vol" />
-                        <TableColumn fx:id="departColumn" prefWidth="120.80006408691406" text="depart" />
-                        <TableColumn fx:id="arriveColumn" prefWidth="161.5999755859375" text="arrive" />
-                        <TableColumn fx:id="idAvionColumn" prefWidth="123.20001220703125" text="ID_avion" />
-                        <TableColumn fx:id="idPiloteColumn" prefWidth="107.20001220703125" text="ID_pilote" />
-                        <TableColumn fx:id="jDepColumn" prefWidth="97.599853515625" text="jdep" />
-                        <TableColumn fx:id="jArrColumn" prefWidth="53.5999755859375" text="jarr" />
-                        <TableColumn fx:id="modif" prefWidth="128.0" />
+                        <TableColumn fx:id="idVolColumn" prefWidth="67.99996948242188" text="ID_vol" />
+                        <TableColumn fx:id="departColumn" prefWidth="94.39999389648438" text="depart" />
+                        <TableColumn fx:id="arriveColumn" prefWidth="116.00001525878906" text="arrive" />
+                        <TableColumn fx:id="idAvionColumn" prefWidth="112.0" text="ID_avion" />
+                        <TableColumn fx:id="idPiloteColumn" prefWidth="108.0" text="ID_pilote" />
+                        <TableColumn fx:id="jDepColumn" prefWidth="112.800048828125" text="jdep" />
+                        <TableColumn fx:id="jArrColumn" prefWidth="113.59991455078125" text="jarr" />
+                        <TableColumn fx:id="actionColumn" prefWidth="184.0" />
                      </columns>
                   </TableView>
                   <Label layoutX="306.0" layoutY="233.0" prefHeight="43.0" prefWidth="146.0" text="Liste des vols :" />
@@ -87,6 +81,8 @@
                         <Image url="@../../../../../../../../JavaProject/src/main/resources/images/arrow.png" />
                      </image>
                   </ImageView>
+                  <ComboBox fx:id="villedepvol_textfield" layoutX="193.0" layoutY="113.0" prefHeight="26.0" prefWidth="159.0" />
+                  <ComboBox fx:id="villearvol_textfield" layoutX="562.0" layoutY="113.0" prefHeight="26.0" prefWidth="159.0" />
                </children>
             </AnchorPane>
          </children>
