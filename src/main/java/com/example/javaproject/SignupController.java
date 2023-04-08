@@ -86,7 +86,7 @@ public class SignupController implements Initializable {
             System.out.println("Terms not confirmed");
         } else {
             dao.insert_admin(signup_nom.getText(),signup_prenom.getText(),signup_password.getText());
-            LoadScene.load(signup_button,"home.fxml","Home",event);
+            LoadScene.load(signup_button,"login.fxml","Home",event);
         }
 
     }

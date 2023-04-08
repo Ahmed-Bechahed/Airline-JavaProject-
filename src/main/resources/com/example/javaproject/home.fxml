@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
@@ -45,29 +48,103 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="container" layoutX="102.0" prefHeight="650.0" prefWidth="856.0" style="-fx-background-color: white;">
+        <AnchorPane fx:id="container" layoutX="107.0" prefHeight="650.0" prefWidth="892.0">
          <children>
-            <Label fx:id="dashboard_welcome" layoutX="478.0" layoutY="22.0" prefHeight="46.0" prefWidth="265.0" text="Welcome agenrt  Ahmed">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <TableView fx:id="dashboard_table" editable="true" layoutX="56.0" layoutY="476.0" prefHeight="146.0" prefWidth="624.0" style="-fx-border-insets: none;">
+            <Label fx:id="dashboard_user_name" layoutX="771.0" layoutY="10.0" prefHeight="26.0" prefWidth="104.0" text="Welcome  Ahmed" />
+            <TableView fx:id="dashboard_table" editable="true" layoutX="14.0" layoutY="423.0" prefHeight="191.0" prefWidth="624.0" style="-fx-border-insets: none;">
               <columns>
-                  <TableColumn fx:id="ID_vol" prefWidth="75.0" text="ID_vol" />
-                <TableColumn fx:id="depart" prefWidth="75.0" text="Destination" />
-                <TableColumn fx:id="arrive" prefWidth="75.0" text="Departure" />
-                  <TableColumn fx:id="jdep" prefWidth="149.60003662109375" text="Departure date " />
-                  <TableColumn fx:id="jarr" minWidth="2.40008544921875" prefWidth="143.99996337890627" text="Arrive Date" />
-                  <TableColumn fx:id="jarr1" minWidth="2.40008544921875" prefWidth="101.5999755859375" text="Full details" />
+                  <TableColumn fx:id="ID_vol" prefWidth="75.0" style="-fx-alignment: center;" text="ID_vol" />
+                <TableColumn fx:id="depart" prefWidth="75.0" style="-fx-alignment: center;" text="Destination" />
+                <TableColumn fx:id="arrive" prefWidth="75.0" style="-fx-alignment: center;" text="Departure" />
+                  <TableColumn fx:id="jdep" prefWidth="149.60003662109375" style="-fx-alignment: center;" text="Departure date " />
+                  <TableColumn fx:id="jarr" minWidth="2.40008544921875" prefWidth="143.99996337890627" style="-fx-alignment: center;" text="Arrive Date" />
+                  <TableColumn fx:id="detailsColumn" minWidth="2.40008544921875" prefWidth="101.5999755859375" style="-fx-alignment: center;" text="Full details" />
               </columns>
             </TableView>
-            <ImageView fx:id="avatar" fitHeight="46.0" fitWidth="51.0" layoutX="764.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="avatar" fitHeight="46.0" fitWidth="51.0" layoutX="708.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/pilot.png" />
+                  <Image url="@../../../images/bear.png" />
                </image>
             </ImageView>
-            <WebView fx:id="map" layoutX="764.0" layoutY="126.0" prefHeight="59.0" prefWidth="53.0" />
+            <WebView fx:id="map" layoutX="647.0" layoutY="204.0" prefHeight="170.0" prefWidth="214.0" />
+            <ComboBox fx:id="combo_box" layoutX="418.0" layoutY="31.0" prefHeight="26.0" prefWidth="122.0" />
+            <Pane layoutX="35.0" layoutY="104.0" prefHeight="90.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="-1.0" layoutY="2.0" prefHeight="18.0" prefWidth="98.0" text="Total revenue : " />
+                  <Label fx:id="price" layoutX="7.0" layoutY="26.0" text="price ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="dashboard_welcome" layoutX="35.0" layoutY="22.0" prefHeight="46.0" prefWidth="310.0" text="Welcome  Ahmed" textFill="#2f94e1">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <Label layoutX="800.0" layoutY="36.0" prefHeight="18.0" prefWidth="46.0" text="Admin" />
+            <Pane layoutX="150.0" layoutY="100.0" prefHeight="90.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="1.0" layoutY="6.0" text="Booking number : " />
+                  <Label fx:id="passengers_number" layoutX="27.0" layoutY="31.0" text="nbr p">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="268.0" layoutY="100.0" prefHeight="90.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="6.0" text="Flights number :" />
+                  <Label fx:id="vols_number" layoutX="36.0" layoutY="31.0" prefHeight="18.0" prefWidth="29.0" text="nbr v">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="396.0" layoutY="99.0" prefHeight="90.0" prefWidth="132.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="6.0" text="Destination covered :" />
+                  <Label fx:id="destinations_number" layoutX="43.0" layoutY="31.0" text="Label">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="14.0" layoutY="395.0" text="List of flights :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="186.0" text="Most visited Places : " />
+            <Pane layoutX="33.0" layoutY="216.0" prefHeight="170.0" prefWidth="570.0">
+               <children>
+                  <ImageView fx:id="place3" fitHeight="153.0" fitWidth="162.0" layoutX="388.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/Berlin.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="nameplace3" layoutX="450.0" layoutY="131.0" text="Place 3" />
+                  <ImageView fx:id="place2" fitHeight="91.0" fitWidth="162.0" layoutX="212.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/Paris.jpg" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <Label fx:id="nameplace2" layoutX="266.0" layoutY="131.0" text="Place 2" />
+                  <ImageView fx:id="place1" fitHeight="91.0" fitWidth="162.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/Rome.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="nameplace1" layoutX="76.0" layoutY="131.0" text="place 1" />
+               </children>
+            </Pane>
          </children>
         </AnchorPane>
     </children>
