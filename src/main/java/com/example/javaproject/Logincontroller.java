@@ -27,12 +27,9 @@ public class Logincontroller {
         AdminDAO dao=new AdminDAO();
         boolean check= dao.authentification(login_id.getText(),login_password.getText());
         if (check) {
-            System.out.println(dao.name_user(Integer.parseInt(login_id.getText())));
-            LoadScene.load(signup_button, "home.fxml","Home",event);
-            ObservableList<Vol> vollist = new VolDAO().getall();
-            for (Vol vol : vollist) {
-                System.out.println(vol.arrive+vol.jarr+vol.jdep);
-            }
+            dao.name_user(Integer.parseInt(login_id.getText()));
+            LoadScene.load(signup_button, "home_structure.fxml","Home",event);
+
         }
 
 

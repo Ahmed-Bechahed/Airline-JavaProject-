@@ -5,9 +5,11 @@ import javafx.scene.control.Alert;
 import java.sql.*;
 
 public class AdminDAO {
-     Connection connection;
+     static Connection connection;
     Statement statement =null;
-    static String user_login;
+    static String user_name_login;
+    static String user_fullname_login;
+    static int user_id;
 
     int id;
 
@@ -87,15 +89,17 @@ public int getlastid() throws SQLException {
 
     }
 
-    public String name_user(int id) throws SQLException {
-        String req="select nom from admin where ID_admin=?";
+    public void name_user(int id) throws SQLException {
+        user_id=id;
+        String req="select nom,prenom from admin where ID_admin=?";
         PreparedStatement st=connection.prepareStatement(req);
         st.setString(1, String.valueOf(id));
         ResultSet res=st.executeQuery();
         while (res.next()){
-            user_login =res.getString(1);
+            user_name_login=res.getString(1);
+            user_fullname_login=res.getString(2)+user_name_login;
         }
-return user_login;
+
     }
 
 

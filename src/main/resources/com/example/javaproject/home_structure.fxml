@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.HomestructureController">
+    <children>
+        <AnchorPane fx:id="navbar" layoutX="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="652.0" prefWidth="106.0" style="-fx-background-color: white;">
+            <children>
+                <ImageView fx:id="dashboard_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="72.0" onMouseClicked="#dashboard_load" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/dashboard.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </ImageView>
+                <ImageView fx:id="vol_icon" fitHeight="26.0" fitWidth="27.0" layoutX="36.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/ticket-flight.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="pilot_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/pilot.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="plane_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/airplane.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="team_icon" fitHeight="26.0" fitWidth="26.0" layoutX="38.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/group.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="deconnect_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="598.0" onMouseClicked="#disconnect" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/exit.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="container" layoutX="100.0" prefHeight="650.0" prefWidth="859.0" style="-fx-background-color: white;" />
+    </children>
+</AnchorPane>
