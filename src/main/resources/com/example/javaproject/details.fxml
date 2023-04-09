@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.Detailscontroller">
+   <children>
+      <AnchorPane fx:id="navbar" layoutX="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="652.0" prefWidth="114.0">
+         <children>
+            <ImageView fx:id="dashboard_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/dashboard.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="vol_icon" fitHeight="26.0" fitWidth="27.0" layoutX="36.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/ticket-flight.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pilot_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/pilot.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="plane_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/airplane.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="team_icon" fitHeight="26.0" fitWidth="26.0" layoutX="38.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/group.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deconnect_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="598.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/exit.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="container" layoutX="103.0" layoutY="1.0" prefHeight="650.0" prefWidth="856.0">
+         <children>
+            <Label layoutX="247.0" layoutY="35.0" prefHeight="43.0" prefWidth="282.0" text="This is the Fligth number °:" textFill="#c41a1a">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font></Label>
+            <Label layoutX="14.0" layoutY="105.0" prefHeight="43.0" prefWidth="92.0" text="Ville de départ :" />
+            <Label layoutX="200.0" layoutY="105.0" prefHeight="43.0" prefWidth="114.0" text="Ville de d 'arrivé :" />
+            <Label layoutX="74.0" layoutY="159.0" prefHeight="43.0" prefWidth="123.0" text="Date de départ :" textFill="#695c5c">
+               <font>
+                  <Font name="Broadway" size="13.0" />
+               </font></Label>
+            <Label layoutX="420.0" layoutY="160.0" prefHeight="43.0" prefWidth="114.0" text="Date d'arrivé :" textFill="#382929">
+               <font>
+                  <Font name="Broadway" size="13.0" />
+               </font></Label>
+            <Label layoutX="464.0" layoutY="104.0" prefHeight="43.0" prefWidth="72.0" text="ID_Avion :" />
+            <Label layoutX="616.0" layoutY="104.0" prefHeight="43.0" prefWidth="64.0" text="ID_Pilote :" />
+            <TextField fx:id="villedepart_textfield" editable="false" layoutX="99.0" layoutY="114.0" prefHeight="26.0" prefWidth="92.0" />
+            <TextField fx:id="villearrive_textfield" editable="false" layoutX="296.0" layoutY="113.0" prefHeight="26.0" prefWidth="92.0" />
+            <TextField fx:id="datedepart_textfield" editable="false" layoutX="198.0" layoutY="168.0" prefHeight="26.0" prefWidth="211.0" />
+            <TextField fx:id="datearrive_textfield" editable="false" layoutX="542.0" layoutY="168.0" prefHeight="26.0" prefWidth="211.0" />
+            <TextField fx:id="idavion_textfield" editable="false" layoutX="532.0" layoutY="114.0" prefHeight="26.0" prefWidth="55.0" />
+            <TextField fx:id="idpilote_textfield" editable="false" layoutX="680.0" layoutY="114.0" prefHeight="26.0" prefWidth="55.0" />
+            <TextField fx:id="volnum_textfield" editable="false" layoutX="451.0" layoutY="43.0" prefHeight="26.0" prefWidth="55.0" />
+            <TableView fx:id="passengersTable" layoutY="276.0" prefHeight="366.0" prefWidth="856.0">
+               <columns>
+                  <TableColumn fx:id="id_passengercl" prefWidth="88.79998779296875" text="ID_passenger" />
+                  <TableColumn fx:id="nouncl" prefWidth="164.80003356933594" text="nom" />
+                  <TableColumn fx:id="prnouncl" minWidth="0.0" prefWidth="161.5999755859375" text="prenom" />
+                  <TableColumn fx:id="numpassscl" prefWidth="179.20001220703125" text="num_passport" />
+                  <TableColumn fx:id="actionColumn" prefWidth="382.39990234375" />
+               </columns>
+            </TableView>
+            <Label layoutX="306.0" layoutY="233.0" prefHeight="43.0" prefWidth="146.0" text="Passengers :" />
+            <ImageView fx:id="addpassenger_icon" fitHeight="26.0" fitWidth="26.0" layoutX="800.0" layoutY="241.0" onMouseClicked="#addp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/add-button.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

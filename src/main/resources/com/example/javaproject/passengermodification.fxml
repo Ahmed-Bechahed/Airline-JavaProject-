@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="296.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.ModifypassengerController">
+   <children>
+      <Label layoutX="64.0" layoutY="29.0" prefHeight="28.0" prefWidth="240.0" text="Let's modify Our passenger" textFill="#810606">
+         <font>
+            <Font name="Bernard MT Condensed" size="19.0" />
+         </font></Label>
+      <Label layoutX="45.0" layoutY="77.0" prefHeight="28.0" prefWidth="81.0" text="Nom" />
+      <TextField fx:id="nom" layoutX="148.0" layoutY="79.0" prefHeight="26.0" prefWidth="102.0" />
+      <Label layoutX="45.0" layoutY="137.0" prefHeight="28.0" prefWidth="81.0" text="Prenom" />
+      <TextField fx:id="prenom" layoutX="148.0" layoutY="138.0" prefHeight="26.0" prefWidth="102.0" />
+      <Label layoutX="43.0" layoutY="190.0" prefHeight="28.0" prefWidth="102.0" text="N° de passport " />
+      <TextField fx:id="numpass" layoutX="151.0" layoutY="189.0" prefHeight="26.0" prefWidth="102.0" />
+      <Button fx:id="validebt" layoutX="196.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#ajout_passenger" prefHeight="28.0" prefWidth="122.0" text="Valider" />
+      <Button fx:id="annulerbt" layoutX="37.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#undooo" prefHeight="28.0" prefWidth="122.0" text="annuler" />
+   </children>
+</AnchorPane>

@@ -1,20 +1,20 @@
 package com.example.javaproject;
 
+import com.example.javaproject.Myconnection;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
 
 public class AdminDAO {
-     static Connection connection;
+    //Connection connection;
+    static Connection connection;
     Statement statement =null;
     static String user_name_login;
     static String user_fullname_login;
     static int user_id;
-
     int id;
-
     AdminDAO(){
-        connection=Myconnection.connect();
+        connection= Myconnection.connect();
         if(connection!=null){
             try {
                 statement=connection.createStatement();
@@ -24,7 +24,6 @@ public class AdminDAO {
             }
         }
     }
-
     public boolean authentification(String id, String password) throws SQLException {
         String sql = "SELECT * FROM admin WHERE ID_admin=? and password=?";
         PreparedStatement st=connection.prepareStatement(sql);
@@ -38,8 +37,6 @@ public class AdminDAO {
             String prenom = res.getString(3);
             System.out.println(nom + prenom);
         }
-
-
         if(n==1) {
             System.out.println("user verified");
         }
@@ -51,28 +48,20 @@ public class AdminDAO {
         }
         return (n==1);
     }
-
-
-public int getlastid() throws SQLException {
-    if (connection!=null) {
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM admin ORDER BY ID_admin DESC LIMIT 1");
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            id = rs.getInt("ID_admin");
+    public int getlastid() throws SQLException {
+        if (connection!=null) {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM admin ORDER BY ID_admin DESC LIMIT 1");
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("ID_admin");
+            }
         }
+        return id;
     }
-    return id;
-}
-
     public void insert_admin(String b, String c,String d) throws SQLException {
-
         if (connection!=null){
-
-
-
             String req= "insert into admin (ID_admin,nom,prenom,password) values(?,?,?,?)";
             try{
-
                 PreparedStatement ps=connection.prepareStatement(req);
                 int id=getlastid();
                 id++;
@@ -86,9 +75,7 @@ public int getlastid() throws SQLException {
                 System.out.println("erreur d'ajout");
             }
         }
-
     }
-
     public void name_user(int id) throws SQLException {
         user_id=id;
         String req="select nom,prenom from admin where ID_admin=?";
@@ -99,8 +86,5 @@ public int getlastid() throws SQLException {
             user_name_login=res.getString(1);
             user_fullname_login=res.getString(2)+user_name_login;
         }
-
     }
-
-
 }

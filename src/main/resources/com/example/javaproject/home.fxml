@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.HomeController">
+    <children>
+        <AnchorPane fx:id="navbar" layoutX="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="652.0" prefWidth="114.0" AnchorPane.leftAnchor="-2.8421709430404007E-14" AnchorPane.rightAnchor="887.6">
+            <children>
+                <ImageView fx:id="dashboard_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/dashboard.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="vol_icon" fitHeight="26.0" fitWidth="27.0" layoutX="36.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/ticket-flight.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="pilot_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/pilot.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="plane_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/airplane.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="team_icon" fitHeight="26.0" fitWidth="26.0" layoutX="38.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/group.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="deconnect_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="598.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/exit.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="container" layoutX="102.0" prefHeight="650.0" prefWidth="856.0" style="-fx-background-color: white;">
+            <children>
+                <Label fx:id="dashboard_welcome" layoutX="478.0" layoutY="22.0" prefHeight="46.0" prefWidth="265.0" text="Welcome agenrt  Ahmed">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="dashboard_table" editable="true" layoutX="56.0" layoutY="476.0" prefHeight="146.0" prefWidth="624.0" style="-fx-border-insets: none;">
+                    <columns>
+                        <TableColumn fx:id="ID_vol" prefWidth="75.0" text="ID_vol" />
+                        <TableColumn fx:id="depart" prefWidth="75.0" text="Destination" />
+                        <TableColumn fx:id="arrive" prefWidth="75.0" text="Departure" />
+                        <TableColumn fx:id="jdep" prefWidth="149.60003662109375" text="Departure date " />
+                        <TableColumn fx:id="jarr" minWidth="2.40008544921875" prefWidth="143.99996337890627" text="Arrive Date" />
+                        <TableColumn fx:id="jarr1" minWidth="2.40008544921875" prefWidth="101.5999755859375" text="Full details" />
+                    </columns>
+                </TableView>
+                <ImageView fx:id="avatar" fitHeight="46.0" fitWidth="51.0" layoutX="764.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/pilot.png" />
+                    </image>
+                </ImageView>
+                <WebView fx:id="map" layoutX="764.0" layoutY="126.0" prefHeight="59.0" prefWidth="53.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

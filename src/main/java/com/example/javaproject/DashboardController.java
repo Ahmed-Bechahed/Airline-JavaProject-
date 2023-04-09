@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 
-public class DashboardController implements Initializable{
+public  class DashboardController implements Initializable{
     public static int idVol;
     @FXML
     private ImageView avatar;
@@ -156,7 +156,9 @@ public class DashboardController implements Initializable{
 
         HBox hbox = new HBox();
         for (String place : places_list) {
-            String path="C:\\JavaProject\\src\\main\\resources\\images\\"+place+".jpg";
+            //String path="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images"+place+".jpg";
+            String path="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images\\Paris.jpg";
+
             System.out.println("this is "+place);
             VBox vbox =new VBox();
             Label place_name=new Label(place);
@@ -207,7 +209,7 @@ public class DashboardController implements Initializable{
                             // Handle the click event here
                             idVol = getTableView().getItems().get(getIndex()).getID_vol();
                             System.out.println("linked page to vol "+ idVol);
-                            LoadScene.load_pane(container, "signup.fxml");
+                            LoadScene.load_pane(container, "details.fxml");
                             System.out.println("Details link clicked for row " + getIndex());
                         });
                     }
@@ -222,9 +224,6 @@ public class DashboardController implements Initializable{
                 };
             }
         });
-
-
-
 
         String apiKey = "YOUR_API_KEY";
         String origin = "Los Angeles, CA";
