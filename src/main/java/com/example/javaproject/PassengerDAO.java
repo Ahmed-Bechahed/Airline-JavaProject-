@@ -9,11 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PassengerDAO {
-    public ObservableList<Passenger> all() throws SQLException {
+    public ObservableList<Passenger> all(int a) throws SQLException {
 
         Connection connection=Myconnection.connect();
         // "SELECT * FROM passenger"where id_vol=id .................
-        String sql = "SELECT * FROM passenger";
+        //"select * from passsenger
+        //where ID_passenger in (select ID_passenger from reservation
+        //where ID_vol="+a+")";
+        String sql = "SELECT * FROM passenger where id_vol="+a;
         PreparedStatement st= connection.prepareStatement(sql);
         System.out.println("success d'executer la requette select all ");
         ResultSet rs = st.executeQuery() ;

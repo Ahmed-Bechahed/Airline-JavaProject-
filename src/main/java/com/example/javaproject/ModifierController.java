@@ -10,6 +10,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -40,6 +44,7 @@ public class ModifierController implements Initializable {
     }
 
 
+
     public void initialize(URL location, ResourceBundle resources) {
         dep.getItems().addAll("Tokyo ", "Cairo","London","Paris");
 
@@ -47,13 +52,29 @@ public class ModifierController implements Initializable {
     }
 
     @FXML
-    private void handleEnregistrer(MouseEvent event) {
+    private void handleEnregistrer(MouseEvent event) throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");//jdep.getValue().atStartOfDay().format(formatter).isEmpty()
         if (jarr.getValue()==null ||jdep.getValue()==null || idpil.getText().isEmpty() || idav.getText().isEmpty() ||arr.getValue().isEmpty() || dep.getValue().isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Champs vides");
             alert.setHeaderText(null);
             alert.setContentText("Veuillez remplir tous les champs.");
+            alert.showAndWait();
+            return;
+        }
+        if( ! Avaiblepil(Integer.parseInt(idpil.getText()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Pilpote !!!!!!!!!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Pilote doesn't  exist try to change The Id Please.");
+            alert.showAndWait();
+            return;
+        }
+        if( ! Avaibleav(Integer.parseInt(idav.getText()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Plane !!!!!!!!!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Plane doesn't   exist try to change The Id Please.");
             alert.showAndWait();
             return;
         }
@@ -65,13 +86,51 @@ public class ModifierController implements Initializable {
         vol.setJdep(jdep.getValue().atStartOfDay().format(formatter));
 
 
-
         VolDAO volDAO = new VolDAO();
         volDAO.update(vol);
 
         // Fermer la fenêtre de modification
         Stage stage = (Stage) idav.getScene().getWindow();
         stage.close();
+    }
+
+    public static boolean Avaiblepil(int idpilote) throws SQLException {
+        boolean available = false;
+        Connection connection=Myconnection.connect();
+        String sql = "SELECT * FROM pilote WHERE ID_pilote = "+ idpilote;
+        Statement stmt;
+        try {
+            stmt = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ResultSet rs = null;
+        rs = stmt.executeQuery(sql);
+
+        if (rs.next()) {
+            available = true;
+        }
+        return available;
+
+    }
+
+    public static boolean Avaibleav(int aa) throws SQLException {
+        boolean available = false;
+        Connection connection=Myconnection.connect();
+        String sql = "SELECT * FROM avion WHERE ID_avion = "+ aa;
+        Statement stmt;
+        try {
+            stmt = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ResultSet rs = null;
+        rs = stmt.executeQuery(sql);
+
+        if (rs.next()) {
+            available = true;
+        }
+        return available;
     }
 
     @FXML

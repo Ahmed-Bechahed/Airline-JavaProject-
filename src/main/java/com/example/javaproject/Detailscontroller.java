@@ -22,10 +22,14 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class Detailscontroller implements Initializable {
+
     @FXML
     private ImageView addpassenger_icon;
     @FXML
@@ -54,13 +58,48 @@ public class Detailscontroller implements Initializable {
     private PassengerDAO passengerDAO;
     @FXML
     private TableColumn<Passenger, Void> actionColumn;
+    @FXML
+    private TextField volnum_textfield,villedepart_textfield,villearrive_textfield,datedepart_textfield;
+    @FXML
+    private TextField datearrive_textfield,idpilote_textfield,idavion_textfield;
+    DashboardController d = new DashboardController();
+    int a = d.idVol;
+    static Passenger Pass;
+    public  void initialize(URL location, ResourceBundle resources) {
 
-    public void initialize(URL location, ResourceBundle resources) {
+        Connection connection = Myconnection.connect();
+        String sql = "SELECT * FROM vol WHERE ID_vol = " + a;
+        Statement stmt;
+        try {
+            stmt = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            if (rs.next()) {
+                volnum_textfield.setText(Integer.toString(rs.getInt(1)));
+                villedepart_textfield.setText(rs.getString(2));
+                villearrive_textfield.setText(rs.getString(3));
+                idavion_textfield.setText(Integer.toString(rs.getInt(4)));
+                idpilote_textfield.setText(Integer.toString(rs.getInt(5)));
+                datedepart_textfield.setText(rs.getString(6));
+                datearrive_textfield.setText(rs.getString(7));
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         passengerDAO = new PassengerDAO();
         id_passengercl.setCellValueFactory(new PropertyValueFactory<>("ID_passenger"));
-        nouncl.setCellValueFactory(new  PropertyValueFactory<>("nom"));
-        prnouncl.setCellValueFactory(new  PropertyValueFactory<>("prenom"));
-        numpassscl.setCellValueFactory(new  PropertyValueFactory<>("num_passeport"));
+        nouncl.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        prnouncl.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        numpassscl.setCellValueFactory(new PropertyValueFactory<>("num_passeport"));
         actionColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Passenger, Void>, ObservableValue<Void>>() {
             @Override
             public ObservableValue<Void> call(TableColumn.CellDataFeatures<Passenger, Void> features) {
@@ -78,67 +117,20 @@ public class Detailscontroller implements Initializable {
                     editButton.setOnAction(event -> {
                         Passenger passenger = getTableView().getItems().get(getIndex());
                         // Code pour modifier le passager sélectionné
-                        Stage editStage = new Stage();
-                        editStage.initModality(Modality.APPLICATION_MODAL);
-
-                        // Créer les champs de saisie pour les informations du passager
-                        TextField nomTextField = new TextField(passenger.getNom());
-                        TextField prenomTextField = new TextField(passenger.getPrenom());
-                        TextField numPasseportTextField = new TextField( String.valueOf(passenger.getNum_passeport()));
-
-                        // Créer le formulaire pour modifier les informations du passager
-                        GridPane editForm = new GridPane();
-                        editForm.addRow(0, new Label("Nom :"), nomTextField);
-                        editForm.addRow(1, new Label("Prénom :"), prenomTextField);
-                        editForm.addRow(2, new Label("Numéro de passeport :"), numPasseportTextField);
-
-                        // Créer les boutons pour enregistrer ou annuler les modifications
-                        Button saveButton = new Button("Enregistrer");
-                        Button cancelButton = new Button("Annuler");
-
-                        // Ajouter les gestionnaires d'événements pour les boutons
-                        saveButton.setOnAction(saveEvent -> {
-                            // Enregistrer les modifications dans la base de données
-                            passenger.setNom(nomTextField.getText());
-                            passenger.setPrenom(prenomTextField.getText());
-                            passenger.setNum_passeport((Integer.parseInt(numPasseportTextField.getText())));
-                            try {
-                                passengerDAO.update(passenger);
-                            } catch (SQLException e) {
-                                throw new RuntimeException(e);
-                            }
-
-                            // Fermer la fenêtre de modification
-                            editStage.close();
-                        });
-
-                        cancelButton.setOnAction(cancelEvent -> {
-                            // Annuler les modifications et fermer la fenêtre de modification
-                            editStage.close();
-                        });
-
-                        // Ajouter les éléments au formulaire de modification
-                        editForm.add(saveButton, 0, 3);
-                        editForm.add(cancelButton, 1, 3);
-
-                        // Afficher la fenêtre de modification
-                        Scene editScene = new Scene(editForm);
-                        editStage.setScene(editScene);
-                        editStage.showAndWait();
-
-                        // Mettre à jour la TableView avec les nouvelles informations du passager
+                        try {
+                            modifierpass(passenger);
+                            System.out.println(" a zeuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                         passengersTable.refresh();
-                    });
+                         });
                     deleteButton.setOnAction(event -> {
                         Passenger passenger = getTableView().getItems().get(getIndex());
                         passengerDAO.delete(passenger);
                         passengersTable.getItems().remove(passenger);
                     });
-
-
-
                 }
-
                 @Override
                 protected void updateItem(Void item, boolean empty) {
                     super.updateItem(item, empty);
@@ -153,16 +145,29 @@ public class Detailscontroller implements Initializable {
             };
         });
         try {
-            passengersTable.setItems(new PassengerDAO().all());
+            passengersTable.setItems(new PassengerDAO().all(a));
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-    }
 
+    }
+        @FXML
+        public void modifierpass(Passenger passenger) throws IOException {
+            if (passenger != null) {
+                this.Pass=passenger;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("passengermodification.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
 
     @FXML
-    public void addp(MouseEvent event) {
+    private void addp(MouseEvent event) throws SQLException {
 
         // Charger le fichier FXML de la nouvelle fenêtre
         FXMLLoader loader = new FXMLLoader(getClass().getResource("addpassengerwindow.fxml"));
@@ -172,16 +177,14 @@ public class Detailscontroller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         // Créer une nouvelle instance de Stage
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         // Afficher la nouvelle fenêtre et attendre que l'utilisateur la ferme
         stage.showAndWait();
-
-        // Le code reprend ici une fois que la nouvelle fenêtre est fermée
         System.out.println("La nouvelle fenêtre est fermée");
-
+        passengersTable.refresh();
+        passengersTable.setItems(new PassengerDAO().all(a));
     }
 }
 

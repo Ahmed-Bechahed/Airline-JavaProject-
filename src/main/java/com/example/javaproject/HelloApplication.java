@@ -16,13 +16,12 @@ import java.sql.Statement;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("details.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 650);
         //stage.getIcons().add(new Image("C:\\JavaProject\\src\\main\\resources\\images\\travel.png"));
         stage.setTitle("Travel!");
         stage.setScene(scene);
         stage.show();
-
     }
     public static void main(String[] args) throws SQLException {
     launch();

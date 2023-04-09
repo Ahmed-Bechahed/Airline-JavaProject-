@@ -136,9 +136,6 @@ public class VolsController implements Initializable  {
         }
     }
 
-
-
-
     @FXML
     public void load_home(MouseEvent event){
         LoadScene.load(backbtn,"home.fxml","login",event);
@@ -151,7 +148,6 @@ public class VolsController implements Initializable  {
             Parent root = loader.load();
             ModifierController modifierController = loader.getController();
             modifierController.setVol(vol);
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

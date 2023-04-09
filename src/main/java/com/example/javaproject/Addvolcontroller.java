@@ -12,9 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -37,6 +35,7 @@ public class Addvolcontroller implements Initializable {
     private DatePicker jarr,jdep;
 
     private VolsController volsController;
+    ModifierController m=new ModifierController();
 
     public void setVolsController(VolsController volsController) {
         this.volsController = volsController;
@@ -52,7 +51,7 @@ public class Addvolcontroller implements Initializable {
         arr_textfld.setValue("Paris");
     }
     @FXML
-    public void ajout_vol(MouseEvent event) {
+    public void ajout_vol(MouseEvent event) throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
         String idvol=idvol_txtfld.getText();
         String depart= dep_txtfld.getValue();
@@ -66,6 +65,31 @@ public class Addvolcontroller implements Initializable {
             alert.setTitle("Champs vides");
             alert.setHeaderText(null);
             alert.setContentText("Veuillez remplir tous les champs.");
+            alert.showAndWait();
+            return;
+        }
+        if( ! AvaibleVol(Integer.parseInt(idvol))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Flight !!!!!!!!!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Flight alredy  exist try to change The Id Please.");
+            alert.showAndWait();
+            return;
+        }
+
+        if( ! m.Avaiblepil(Integer.parseInt(idpil.getText()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Pilpote !!!!!!!!!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Pilote doesn't  exist try to change The Id Please.");
+            alert.showAndWait();
+            return;
+        }
+        if( ! ModifierController.Avaibleav(Integer.parseInt(idav.getText()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Plane !!!!!!!!!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Plane doesn't   exist try to change The Id Please.");
             alert.showAndWait();
             return;
         }
@@ -85,13 +109,6 @@ public class Addvolcontroller implements Initializable {
             statement.setString(6,  datedep);
             statement.setString(7,  datearr);
             statement.executeUpdate();
-
-            // this(this.volsController);
-            // volsControlle.initialize(null,null);
-            //volsController.initialize(null, null);
-           //LoadScene.load(this.validebtn, "vols.fxml","Home",event);
-
-
         } catch (SQLException e) {
             e.printStackTrace();
             return;
@@ -101,5 +118,23 @@ public class Addvolcontroller implements Initializable {
         stage.close();
     }
 
+    private boolean AvaibleVol(int idflight) throws SQLException {
+        boolean available = true;
+        Connection connection=Myconnection.connect();
+        String sql = "SELECT * FROM vol WHERE ID_vol = "+ idflight;
+        Statement stmt;
+        try {
+            stmt = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ResultSet rs = null;
+        rs = stmt.executeQuery(sql);
+
+        if (rs.next()) {
+            available = false;
+        }
+        return available;
+    }
 
 }

@@ -75,16 +75,14 @@ public class HomeController  implements Initializable{
 
 
     public void initialize (URL Location, ResourceBundle resources) {
-       dashboard_welcome.setText("Welcome  "+AdminDAO.user_login);
-       ID_vol.setCellValueFactory(new PropertyValueFactory<>("ID_vol"));
+        dashboard_welcome.setText("Welcome  "+AdminDAO.user_name_login);
+        ID_vol.setCellValueFactory(new PropertyValueFactory<>("ID_vol"));
         depart.setCellValueFactory(new PropertyValueFactory<>("depart"));
         arrive.setCellValueFactory(new PropertyValueFactory<>("arrive"));
-       // id_avion.setCellValueFactory(new PropertyValueFactory<>("ID_avion"));
-       // id_pilote.setCellValueFactory(new PropertyValueFactory<>("ID_pilote"));
+        // id_avion.setCellValueFactory(new PropertyValueFactory<>("ID_avion"));
+        // id_pilote.setCellValueFactory(new PropertyValueFactory<>("ID_pilote"));
         jdep.setCellValueFactory(new PropertyValueFactory<>("jdep"));
         jarr.setCellValueFactory(new PropertyValueFactory<>("jarr"));
-
-
         try {
             dashboard_table.setItems( new VolDAO().getall());
         } catch (SQLException e) {
@@ -96,7 +94,7 @@ public class HomeController  implements Initializable{
         String destination = "San Francisco, CA";
         String url = "https://www.google.com/maps/embed/v1/directions?key=" + apiKey + "&origin=" + origin + "&destination=" + destination;
         //String MAPS_URL = "https://www.google.com/maps/dir/Tunisia/Rome,+Metropolitan+City+of+Rome+Capital,+Italy/@38.1294285,9.3464021,6z/data=!4m14!4m13!1m5!1m1!1s0x125595448316a4e1:0x3a84333aaa019bef!2m2!1d9.537499!2d33.886917!1m5!1m1!1s0x132f6196f9928ebb:0xb90f770693656e38!2m2!1d12.4963655!2d41.9027835!3e4";
-       String MAPS_URL="https://www.google.com/maps/@46.3337537,-6.811227,3.47z";
+        String MAPS_URL="https://www.google.com/maps/@46.3337537,-6.811227,3.47z";
         WebEngine webEngine = map.getEngine();
         webEngine.load(MAPS_URL);
 
