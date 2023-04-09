@@ -189,28 +189,22 @@ public class VolsController implements Initializable  {
         return flights;
     }
 
-    /*  public static DatePicker localDateTimePicker() {
-          DatePicker datePicker = new DatePicker();
 
-          // Define a DateTimeFormatter that matches the desired format
-          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-          // Define a StringConverter that converts between LocalDate and String using the formatter
-          StringConverter<LocalDate> converter = new LocalDateStringConverter(formatter, null);
 
-          // Set the converter on the DatePicker control
-          datePicker.setConverter(converter);
-
-          // Set the prompt text to match the desired format
-          datePicker.setPromptText(formatter.format(LocalDateTime.now()));
-
-          return datePicker;
-      }*/
     @FXML
-    public void addv(MouseEvent event) {
+    public void addv(MouseEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Addvolwindow.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+
         System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         // Charger le fichier FXML de la nouvelle fenêtre
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Addvolwindow.fxml"));
+       /* FXMLLoader loader = new FXMLLoader(getClass().getResource("Addvolwindow.fxml"));
         Parent root = null;
         try {
             root = loader.load();
@@ -225,7 +219,10 @@ public class VolsController implements Initializable  {
         stage.showAndWait();
 
         // Le code reprend ici une fois que la nouvelle fenêtre est fermée
+        */
         System.out.println("La nouvelle fenêtre est fermée");
+        volsTable.refresh();
+        volsTable.setItems(new VolDAO().all());
 
     }
 

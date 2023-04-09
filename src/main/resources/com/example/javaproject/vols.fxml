@@ -54,14 +54,14 @@
                   <Label layoutX="410.0" layoutY="105.0" prefHeight="43.0" prefWidth="114.0" text="Ville de d 'arrivé :" />
                   <TableView fx:id="volsTable" layoutX="1.0" layoutY="281.0" prefHeight="366.0" prefWidth="856.0">
                      <columns>
-                        <TableColumn fx:id="idVolColumn" prefWidth="67.99996948242188" text="ID_vol" />
-                        <TableColumn fx:id="departColumn" prefWidth="94.39999389648438" text="depart" />
-                        <TableColumn fx:id="arriveColumn" prefWidth="116.00001525878906" text="arrive" />
-                        <TableColumn fx:id="idAvionColumn" prefWidth="112.0" text="ID_avion" />
-                        <TableColumn fx:id="idPiloteColumn" prefWidth="108.0" text="ID_pilote" />
-                        <TableColumn fx:id="jDepColumn" prefWidth="112.800048828125" text="jdep" />
-                        <TableColumn fx:id="jArrColumn" prefWidth="113.59991455078125" text="jarr" />
-                        <TableColumn fx:id="actionColumn" prefWidth="184.0" />
+                        <TableColumn fx:id="idVolColumn" prefWidth="51.20001220703125" text="ID_vol" />
+                        <TableColumn fx:id="departColumn" prefWidth="88.80001831054688" text="depart" />
+                        <TableColumn fx:id="arriveColumn" prefWidth="99.20002746582031" text="arrive" />
+                        <TableColumn fx:id="idAvionColumn" prefWidth="108.0" text="ID_avion" />
+                        <TableColumn fx:id="idPiloteColumn" prefWidth="104.79998779296875" text="ID_pilote" />
+                        <TableColumn fx:id="jDepColumn" prefWidth="128.0" text="jdep" />
+                        <TableColumn fx:id="jArrColumn" prefWidth="114.39990234375" text="jarr" />
+                        <TableColumn fx:id="actionColumn" prefWidth="219.2000732421875" />
                      </columns>
                   </TableView>
                   <Label layoutX="306.0" layoutY="233.0" prefHeight="43.0" prefWidth="146.0" text="Liste des vols :" />

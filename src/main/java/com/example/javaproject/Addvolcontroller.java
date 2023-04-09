@@ -29,10 +29,6 @@ public class Addvolcontroller implements Initializable {
     private TextField idvol_txtfld;
     @FXML
     private ComboBox<String> dep_txtfld ,arr_textfld;
-    //dep_txtfld.getItems().add("Value 1", "Value 2", "Value 3");
-
-
-
     @FXML
     private TextField idav;
     @FXML
@@ -77,58 +73,29 @@ public class Addvolcontroller implements Initializable {
 
         String datearr= jarr.getValue().atStartOfDay().format(formatter);
         String datedep=jdep.getValue().atStartOfDay().format(formatter);
-
-
-
         // Insertion des données dans la base de données
         Connection connection=Myconnection.connect();
         String query = "INSERT INTO `vol` (`ID_vol`, `depart`, `arrive`, `ID_avion`, `ID_pilote`, `jdep`, `jarr`) VALUES(?, ?, ?, ?, ?,?,?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, Integer.parseInt(idvol));
-
             statement.setString(2, depart);
             statement.setString(3, arrive);
             statement.setInt(4, Integer.parseInt(idavion));
             statement.setInt(5, Integer.parseInt(idpilote));
-
-            //String dateString = "2022-04-07 14:30:00";
-          //  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            //  Date date = dateFormat.parse(dateString);
-
             statement.setString(6,  datedep);
-            //
-            // statement.setString(6, "2022-04-07 16:30:00");
-            //statement.setString(7, datearr);
             statement.setString(7,  datearr);
-
             statement.executeUpdate();
+
             // this(this.volsController);
             // volsControlle.initialize(null,null);
             //volsController.initialize(null, null);
-          LoadScene.load(this.validebtn, "vols.fxml","Home",event);
-            // this.volsController.initialize(null,"vols.fxml");
+           //LoadScene.load(this.validebtn, "vols.fxml","Home",event);
 
-           /* FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
-            try {
-                Parent root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            VolsController volsController = loader.getController();
-
-            volsController.initialize(null, null);
-            */
 
         } catch (SQLException e) {
             e.printStackTrace();
             return;
         }
-
-        // Ajout des données dans la TableView
-
-
-
-        // Fermeture de la fenêtre
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
