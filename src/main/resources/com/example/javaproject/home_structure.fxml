@@ -17,10 +17,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </ImageView>
-                <ImageView fx:id="vol_icon" fitHeight="26.0" fitWidth="27.0" layoutX="36.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="vol_icon" fitHeight="26.0" fitWidth="27.0" layoutX="36.0" layoutY="113.0" onMouseClicked="#vols_load" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../../images/ticket-flight.png" />
                     </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </ImageView>
                 <ImageView fx:id="pilot_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
                     <image>

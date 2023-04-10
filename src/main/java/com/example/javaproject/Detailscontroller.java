@@ -14,6 +14,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -54,7 +55,8 @@ public class Detailscontroller implements Initializable {
 
     private ObservableList<Passenger> passengerList = FXCollections.observableArrayList();
 
-
+    @FXML
+    private AnchorPane container;
     private PassengerDAO passengerDAO;
     @FXML
     private TableColumn<Passenger, Void> actionColumn;
@@ -165,7 +167,10 @@ public class Detailscontroller implements Initializable {
                 stage.showAndWait();
             }
         }
-
+    @FXML
+    private void dashboard_load(MouseEvent event){
+        LoadScene.load_pane(container,"vols.fxml");
+    }
     @FXML
     private void addp(MouseEvent event) throws SQLException {
 

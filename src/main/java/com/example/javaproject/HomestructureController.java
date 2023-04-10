@@ -41,9 +41,14 @@ public class HomestructureController implements Initializable {
         LoadScene.load_pane(container,"dashboard.fxml");
     }
 
-    public void dashboard_load(MouseEvent event){
+    public  void dashboard_load(MouseEvent event){
         LoadScene.load_pane(container,"dashboard.fxml");
     }
+
+    public void vols_load(MouseEvent event){LoadScene.load_pane(container,"vols.fxml");}
+
+    //public void avion_load(MouseEvent event){LoadScene.load_pane(container,"dashboard.fxml");}
+
 
     public void disconnect(MouseEvent event){
         Myconnection.disconnect(AdminDAO.connection);

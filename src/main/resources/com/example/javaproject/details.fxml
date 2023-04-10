@@ -11,41 +11,7 @@
 
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.Detailscontroller">
    <children>
-      <AnchorPane fx:id="navbar" layoutX="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="652.0" prefWidth="114.0">
-         <children>
-            <ImageView fx:id="dashboard_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/dashboard.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="vol_icon" fitHeight="26.0" fitWidth="27.0" layoutX="36.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/ticket-flight.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="pilot_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/pilot.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="plane_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/airplane.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="team_icon" fitHeight="26.0" fitWidth="26.0" layoutX="38.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/group.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="deconnect_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="598.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/exit.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="container" layoutX="103.0" layoutY="1.0" prefHeight="650.0" prefWidth="856.0">
+      <AnchorPane fx:id="container" layoutX="33.0" layoutY="1.0" prefHeight="650.0" prefWidth="926.0">
          <children>
             <Label layoutX="247.0" layoutY="35.0" prefHeight="43.0" prefWidth="282.0" text="This is the Fligth number °:" textFill="#c41a1a">
                <font>
@@ -83,6 +49,11 @@
             <ImageView fx:id="addpassenger_icon" fitHeight="26.0" fitWidth="26.0" layoutX="800.0" layoutY="241.0" onMouseClicked="#addp" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/add-button.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Back_btn" fitHeight="26.0" fitWidth="40.0" layoutX="20.0" layoutY="30.0" onMouseClicked="#dashboard_load" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/arrow.png" />
                </image>
             </ImageView>
          </children>

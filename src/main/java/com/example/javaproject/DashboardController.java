@@ -153,11 +153,10 @@ public  class DashboardController implements Initializable{
         //most visited places :
         ArrayList<String> places_list = HomeDAO.get_top_places();
 
-
         HBox hbox = new HBox();
         for (String place : places_list) {
-            //String path="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images"+place+".jpg";
-            String path="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images\\Paris.jpg";
+            String path="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images\\"+place+".jpg";
+          // String path="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images\\Paris.jpg";
 
             System.out.println("this is "+place);
             VBox vbox =new VBox();

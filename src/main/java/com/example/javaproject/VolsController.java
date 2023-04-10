@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,7 +30,8 @@ public class VolsController implements Initializable  {
 
     @FXML
     private ComboBox<String> villedepvol_textfield,villearvol_textfield;
-
+    @FXML
+    private AnchorPane container;
     @FXML
     private Button recherche_button;
     @FXML
@@ -95,6 +97,7 @@ public class VolsController implements Initializable  {
             return new TableCell<Vol, Void>() {
                 private final Button editButton = new Button("Modifier");
                 private final Button deleteButton = new Button("Supprimer");
+                private final Button moreButton = new Button("more.....");
 
                 {
                     editButton.setOnAction(event -> {
@@ -111,13 +114,22 @@ public class VolsController implements Initializable  {
                         volDAO.delete(vol);
                         volsTable.getItems().remove(vol);
                     });
+                    moreButton.setOnAction(event -> {
+
+                        Vol vol = getTableView().getItems().get(getIndex());
+                        DashboardController.idVol=vol.getID_vol();
+
+                            LoadScene.load_pane(container,"details.fxml");
+                           // modifierVol(vol);
+                       // volsTable.refresh();
+                    });
 
                 }
                 @Override
                 protected void updateItem(Void item, boolean empty) {
                     super.updateItem(item, empty);
                     if (!empty) {
-                        HBox hbox = new HBox(editButton, deleteButton);
+                        HBox hbox = new HBox(editButton, deleteButton,moreButton);
                         hbox.setSpacing(5);
                         setGraphic(hbox);
                     } else {
@@ -134,12 +146,16 @@ public class VolsController implements Initializable  {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 
     @FXML
     public void load_home(MouseEvent event){
         LoadScene.load(backbtn,"home.fxml","login",event);
     }
+
+
 
     @FXML
     public void modifierVol(Vol vol) throws IOException {

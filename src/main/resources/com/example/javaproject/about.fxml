@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="container" prefHeight="549.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaproject.Aboutcontroller">
+   <children>
+      <Label layoutX="245.0" layoutY="14.0" prefHeight="27.0" prefWidth="479.0" text="Tire chikh 7awes w Dour l3alem m3ana &quot;asfar Imtiyez khir mil freze&quot;" textFill="#e11717">
+         <font>
+            <Font name="Baskerville Old Face" size="16.0" />
+         </font>
+      </Label>
+      <Line endX="444.29998779296875" endY="60.00000762939453" startX="444.2999572753906" startY="589.69287109375" />
+      <Line endX="444.29998779296875" endY="60.00000762939453" layoutX="6.0" startX="444.2999572753906" startY="589.69287109375" />
+      <Label layoutX="141.0" layoutY="106.0" prefHeight="27.0" prefWidth="183.0" text="A9wa pilotet fik ya tounes" textFill="#c497a3">
+         <font>
+            <Font name="Baskerville Old Face" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="599.0" layoutY="106.0" prefHeight="27.0" prefWidth="183.0" text="A9wa Tayarat fik ya tounes" textFill="#c497a3">
+         <font>
+            <Font name="Baskerville Old Face" size="16.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="inerfpilot" layoutY="189.0" prefHeight="364.0" prefWidth="434.0">
+         <children>
+            <ImageView fx:id="suiv_pil" fitHeight="52.0" fitWidth="48.0" layoutX="354.0" layoutY="141.0" onMouseClicked="#nextpilote" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/right-arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deleteicon" fitHeight="48.0" fitWidth="40.0" layoutX="257.0" layoutY="338.0" onMouseClicked="#supp_pilote" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/delete.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="modifyicon" fitHeight="48.0" fitWidth="40.0" layoutX="153.0" layoutY="345.0" onMouseClicked="#modif_pil" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/file.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="prec_pil" fitHeight="52.0" fitWidth="48.0" layoutX="41.0" layoutY="151.0" onMouseClicked="#lastpilote" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/left-arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="avataricon" fitHeight="114.0" fitWidth="119.0" layoutX="163.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/bear.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="id_pil" editable="false" layoutX="146.0" layoutY="177.0" promptText="no" text="id pilote" />
+            <TextField fx:id="nom_pil" editable="false" layoutX="145.0" layoutY="229.0" promptText="no" text="nom" />
+            <TextField fx:id="pr_pil" editable="false" layoutX="146.0" layoutY="277.0" promptText="no" text="prenom" />
+            <VBox fx:id="modifpilote" alignment="CENTER" layoutX="145.0" layoutY="211.0" prefHeight="118.0" prefWidth="150.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="nom_pil1" promptText="no" text="nom" />
+                  <TextField fx:id="pr_pil1" promptText="no" text="prenom" />
+                  <ImageView fx:id="okmodpil" fitHeight="27.0" fitWidth="29.0" onMouseClicked="#modif_pilote" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/checked.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="interavio" layoutX="451.0" layoutY="209.0" prefHeight="408.0" prefWidth="456.0">
+         <children>
+            <ImageView fx:id="suiv_av" fitHeight="52.0" fitWidth="48.0" layoutX="357.0" layoutY="125.0" onMouseClicked="#nextavion" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/right-arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="prec_av" fitHeight="52.0" fitWidth="48.0" layoutX="44.0" layoutY="135.0" onMouseClicked="#lastavion" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/left-arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="avataravionicon" fitHeight="114.0" fitWidth="119.0" layoutX="166.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/airplane.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deleteavionicon1" fitHeight="48.0" fitWidth="40.0" layoutX="333.0" layoutY="335.0" onMouseClicked="#supp_avion" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/delete.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="modifyavionicon1" fitHeight="48.0" fitWidth="40.0" layoutX="183.0" layoutY="343.0" onMouseClicked="#modif_avi" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/file.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="id_av" editable="false" layoutX="167.0" layoutY="166.0" promptText="no" text="id avion" />
+            <TextField fx:id="type" editable="false" layoutX="166.0" layoutY="218.0" promptText="no" text="type " />
+            <TextField fx:id="capacite" editable="false" layoutX="167.0" layoutY="266.0" promptText="no" text="capacite" />
+            <VBox fx:id="modifavion" alignment="CENTER" layoutX="165.0" layoutY="207.0" prefHeight="118.0" prefWidth="150.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="tyyyyp" promptText="no" text="type" />
+                  <TextField fx:id="caap" promptText="no" text="prenom" />
+                  <ImageView fx:id="okmodpil1" fitHeight="27.0" fitWidth="29.0" onMouseClicked="#modif_avion" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/checked.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="addicon" fitHeight="48.0" fitWidth="40.0" layoutX="375.0" layoutY="151.0" onMouseClicked="#ajout_pill" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/add-button.png" />
+         </image>
+      </ImageView>
+      <HBox fx:id="ajpilote" alignment="CENTER" layoutX="35.0" layoutY="151.0" prefHeight="40.0" prefWidth="325.0" spacing="7.0">
+         <children>
+            <TextField fx:id="idlab" prefHeight="26.0" prefWidth="62.0" promptText="no" text="id_pilote" />
+            <TextField fx:id="namlab" prefHeight="26.0" prefWidth="92.0" promptText="no" text="nom" />
+            <TextField fx:id="prlab" prefHeight="26.0" prefWidth="92.0" promptText="no" text="prenom" />
+            <ImageView fx:id="okpil" fitHeight="27.0" fitWidth="29.0" onMouseClicked="#ajout_pil" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/checked.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <ImageView fx:id="addavionicon1" fitHeight="48.0" fitWidth="40.0" layoutX="895.0" layoutY="140.0" onMouseClicked="#ajout_avio" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/add-button.png" />
+         </image>
+      </ImageView>
+      <HBox fx:id="ajavion" alignment="CENTER" layoutX="547.0" layoutY="140.0" prefHeight="40.0" prefWidth="325.0" spacing="7.0">
+         <children>
+            <TextField fx:id="idavvv" prefHeight="26.0" prefWidth="62.0" promptText="no" text="id_avion" />
+            <TextField fx:id="tuy" prefHeight="26.0" prefWidth="92.0" promptText="no" text="type" />
+            <TextField fx:id="caaaaa" prefHeight="26.0" prefWidth="92.0" promptText="no" text="capacite" />
+            <ImageView fx:id="okpil1" fitHeight="27.0" fitWidth="29.0" onMouseClicked="#ajout_avion" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/checked.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

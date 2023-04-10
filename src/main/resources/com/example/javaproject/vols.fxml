@@ -13,55 +13,21 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="1000.0">
          <children>
-            <AnchorPane fx:id="navbar" layoutX="-11.0" layoutY="-10.0" minHeight="0.0" minWidth="0.0" prefHeight="662.0" prefWidth="98.0">
-               <children>
-                  <ImageView fx:id="dashboard_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/dashboard.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="vol_icon" fitHeight="26.0" fitWidth="27.0" layoutX="36.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/ticket-flight.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="pilot_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/pilot.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="plane_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/airplane.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="team_icon" fitHeight="26.0" fitWidth="26.0" layoutX="38.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/group.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="deconnect_icon" fitHeight="26.0" fitWidth="26.0" layoutX="36.0" layoutY="598.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../images/exit.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="volcontainer" layoutX="73.0" layoutY="-11.0" prefHeight="662.0" prefWidth="865.0">
+            <AnchorPane fx:id="container" layoutX="22.0" layoutY="-11.0" prefHeight="662.0" prefWidth="917.0">
                <children>
                   <Label layoutX="296.0" layoutY="14.0" prefHeight="43.0" prefWidth="146.0" text="Trouvez votre vol !!" />
                   <Label layoutX="64.0" layoutY="104.0" prefHeight="43.0" prefWidth="92.0" text="Ville de départ :" />
                   <Label layoutX="410.0" layoutY="105.0" prefHeight="43.0" prefWidth="114.0" text="Ville de d 'arrivé :" />
-                  <TableView fx:id="volsTable" layoutX="1.0" layoutY="281.0" prefHeight="366.0" prefWidth="856.0">
+                  <TableView fx:id="volsTable" layoutX="1.0" layoutY="281.0" prefHeight="366.0" prefWidth="969.0">
                      <columns>
                         <TableColumn fx:id="idVolColumn" prefWidth="51.20001220703125" text="ID_vol" />
-                        <TableColumn fx:id="departColumn" prefWidth="88.80001831054688" text="depart" />
-                        <TableColumn fx:id="arriveColumn" prefWidth="99.20002746582031" text="arrive" />
-                        <TableColumn fx:id="idAvionColumn" prefWidth="108.0" text="ID_avion" />
-                        <TableColumn fx:id="idPiloteColumn" prefWidth="104.79998779296875" text="ID_pilote" />
-                        <TableColumn fx:id="jDepColumn" prefWidth="128.0" text="jdep" />
-                        <TableColumn fx:id="jArrColumn" prefWidth="114.39990234375" text="jarr" />
-                        <TableColumn fx:id="actionColumn" prefWidth="219.2000732421875" />
+                        <TableColumn fx:id="departColumn" prefWidth="72.79999542236328" text="depart" />
+                        <TableColumn fx:id="arriveColumn" prefWidth="75.199951171875" text="arrive" />
+                        <TableColumn fx:id="idAvionColumn" prefWidth="99.199951171875" text="ID_avion" />
+                        <TableColumn fx:id="idPiloteColumn" prefWidth="91.99993896484375" text="ID_pilote" />
+                        <TableColumn fx:id="jDepColumn" prefWidth="180.800048828125" text="jdep" />
+                        <TableColumn fx:id="jArrColumn" prefWidth="141.5999755859375" text="jarr" />
+                        <TableColumn fx:id="actionColumn" prefWidth="258.39996337890625" />
                      </columns>
                   </TableView>
                   <Label layoutX="306.0" layoutY="233.0" prefHeight="43.0" prefWidth="146.0" text="Liste des vols :" />

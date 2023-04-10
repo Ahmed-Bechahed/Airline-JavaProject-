@@ -5,6 +5,12 @@ public class Pilote {
     public String nom;
     public String prenom;
 
+    public Pilote(int ID_pilote, String nom, String prenom) {
+        this.ID_pilote = ID_pilote;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
     public int getID_pilote() {
         return ID_pilote;
     }

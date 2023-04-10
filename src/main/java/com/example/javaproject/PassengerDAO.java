@@ -57,7 +57,6 @@ public class PassengerDAO {
     public void delete(Passenger passenger) {
         Connection conn = null;
         PreparedStatement stmt = null;
-
         try {
             Connection connection=Myconnection.connect();
             String sql = "DELETE FROM passenger WHERE ID_passenger = ?";
