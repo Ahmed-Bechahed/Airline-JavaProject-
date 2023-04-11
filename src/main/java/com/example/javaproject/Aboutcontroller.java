@@ -4,19 +4,18 @@ package com.example.javaproject;
         import javafx.fxml.Initializable;
         import javafx.scene.control.Alert;
         import javafx.scene.control.TextField;
+        import javafx.scene.image.Image;
         import javafx.scene.image.ImageView;
         import javafx.scene.input.MouseEvent;
         import javafx.scene.layout.AnchorPane;
         import javafx.scene.layout.HBox;
         import javafx.scene.layout.VBox;
-        import javafx.stage.Stage;
 
         import java.net.URL;
         import java.sql.*;
         import java.util.List;
+        import java.util.Random;
         import java.util.ResourceBundle;
-
-        import static com.sun.glass.ui.Cursor.setVisible;
 
 public class Aboutcontroller implements Initializable {
 
@@ -143,9 +142,15 @@ public class Aboutcontroller implements Initializable {
         nom_pil.setText(pilote.getNom());
         pr_pil.setText(pilote.getPrenom());
         id_pil.setText(Integer.toString(pilote.ID_pilote));
-        // Afficher l'avatar
-        //Image avatar = new Image(pilote.getAvatar());
-      //  avatarImageView.setImage(avatar);
+
+        Random r=new Random();
+        int a=1+r.nextInt(6);
+
+       // String path="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images\\"+place+".jpg";
+        Random ran=new Random();
+        int im=1+ran.nextInt(6);
+         String mypath="C:\\Users\\xfour\\Desktop\\MYproject\\Airline-JavaProject-\\src\\main\\resources\\images\\avatar\\"+im+".png";
+        avataricon.setImage(new Image(mypath));
     }
     private void showplane(int index) {
         System.out.println(avions.size());
@@ -194,9 +199,7 @@ public class Aboutcontroller implements Initializable {
         modifavion.setVisible(true);
         tyyyyp.setText(type.getText());
         caap.setText(capacite.getText());
-
     }
-
     @FXML
     private void modif_pilote() throws SQLException {
         aboutDAO=new AboutDAO();
@@ -352,6 +355,14 @@ public class Aboutcontroller implements Initializable {
             alert.showAndWait();
             return;
         }
+        if( ! AvaiblePlane(Integer.parseInt(ida))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Plane  !!!!!!!!!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("This Plane already  exist try to change The Id Please.");
+            alert.showAndWait();
+            return;
+        }
         Connection connection=Myconnection.connect();
         //INSERT INTO `passenger` (`ID_passenger`, `nom`, `prenom`, `num_passeport`) VALUES
         String query ="INSERT INTO `avion` (`ID_avion`, `type`, `capacite`) VALUES(?,?,?)";
@@ -360,15 +371,17 @@ public class Aboutcontroller implements Initializable {
             statement.setString(2, typ);
             statement.setInt(3,Integer.parseInt(cappp) );
             statement.executeUpdate();
-            ajavion.setVisible(false);
-            try {
-                avions=aboutDAO.getAllavions();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            currentIndexxx=0;
-            showplane(currentIndexxx);
+
         }
+        ajavion.setVisible(false);
+        interavio.setVisible(true);
+        try {
+            avions=aboutDAO.getAllavions();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        currentIndexxx=0;
+        showplane(currentIndexxx);
     }
 
     @FXML
@@ -386,6 +399,14 @@ public class Aboutcontroller implements Initializable {
             alert.showAndWait();
             return;
         }
+        if( ! AvaiblePilote(Integer.parseInt(idpill))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Pilote  !!!!!!!!!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("This Pilote already  exist try to change The Id Please.");
+            alert.showAndWait();
+            return;
+        }
         Connection connection=Myconnection.connect();
         //INSERT INTO `passenger` (`ID_passenger`, `nom`, `prenom`, `num_passeport`) VALUES
         String query ="INSERT INTO `pilote` (`ID_pilote`, `nom`, `prenom`) VALUES(?,?,?)";
@@ -395,18 +416,56 @@ public class Aboutcontroller implements Initializable {
             statement.setString(3, prpill);
             statement.executeUpdate();
 
-            ajpilote.setVisible(false);
-            try {
-                pilotes = aboutDAO.getAllPilotes();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            currentIndex=0;
-            showPilote(currentIndex);
+
         }
+        ajpilote.setVisible(false);
+        inerfpilot.setVisible(true);
+        try {
+            pilotes = aboutDAO.getAllPilotes();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        currentIndex=0;
+        showPilote(currentIndex);
     }
 
+    public static boolean AvaiblePilote(int id) throws SQLException {
+        boolean available = true;
+        Connection connection=Myconnection.connect();
+        String sql = "SELECT * FROM pilote WHERE ID_pilote = "+id;
+        Statement stmt;
+        try {
+            stmt = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ResultSet rs = null;
+        rs = stmt.executeQuery(sql);
 
+        if (rs.next()) {
+            available = false; // Flight ID is already taken
+        }
+        return available;
+    }
+
+    public static boolean AvaiblePlane(int id) throws SQLException {
+        boolean available = true;
+        Connection connection=Myconnection.connect();
+        String sql = "SELECT * FROM avion WHERE ID_avion = "+id;
+        Statement stmt;
+        try {
+            stmt = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ResultSet rs = null;
+        rs = stmt.executeQuery(sql);
+
+        if (rs.next()) {
+            available = false;
+        }
+        return available;
+    }
 
 
 
